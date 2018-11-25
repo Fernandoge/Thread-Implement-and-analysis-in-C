@@ -8,6 +8,9 @@
  *
  */
 
+#include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,6 +58,8 @@ void *Usage(char *argv[]) {
  */
 int main(int argc, char *argv[]) {
 
+   time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
+   clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
    pthread_t *thread;
    pthread_attr_t attribute;
    struct Message **m;
@@ -64,6 +69,10 @@ int main(int argc, char *argv[]) {
    if (argc != 3)
       Usage(argv);
    else {
+      printf ("using UNIX function time to measure wallclock time ... \n");
+      printf ("using UNIX function clock to measure CPU time ... \n");
+      t0 = time(NULL);
+      c0 = clock();
       n = atoi(argv[1]);
       k = atoi(argv[2]);
       thread = calloc(k,sizeof(pthread_t));
@@ -84,8 +93,15 @@ int main(int argc, char *argv[]) {
       for (i = 0; i < k; i = i + 1)
          pthread_join(thread[i],&exit_status);
       printf("\n\n**************************************\n\n");
-      for (i = 0; i < n; i = i + 1) 
-         printf("%3d - %f\n",i + 1,result[i]);
+      t1 = time(NULL);
+      c1 = clock();
+
+      printf ("\tend (wall):              %ld\n", (long) t1);
+      printf ("\tend (CPU);               %d\n", (int) c1);
+      printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
+      printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
+      //for (i = 0; i < n; i = i + 1) 
+         //printf("%3d - %f\n",i + 1,result[i]);
    }
    return 0;
 }
