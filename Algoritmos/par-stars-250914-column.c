@@ -195,7 +195,7 @@ int main(int argc, char **argv) {
       pthread_attr_destroy(&attribute); 
       for (i = 0; i < k; i = i + 1)
          pthread_join(thread[i],&exit_status);
-      PrintMap(r,c); 
+      //PrintMap(r,c); 
       t1 = time(NULL);
       c1 = clock();
 

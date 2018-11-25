@@ -11,6 +11,9 @@
  *
  *****************************************************************************/
 
+#include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -125,6 +128,18 @@ int main(int argc, char **argv) {
    char **map;
 
    if (argc == 2) {
+      time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
+      clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
+
+      printf ("using UNIX function time to measure wallclock time ... \n");
+      printf ("using UNIX function clock to measure CPU time ... \n");
+
+      t0 = time(NULL);
+      c0 = clock();
+
+      printf ("\tbegin (wall):            %ld\n", (long) t0);
+      printf ("\tbegin (CPU):             %d\n", (int) c0);
+
       if (strcmp(argv[1],"-S") == 0)
 	 mode = SILENT;
       if (strcmp(argv[1],"-V") == 0)
@@ -133,10 +148,18 @@ int main(int argc, char **argv) {
       scanf("%d",&c);
       sky = ReadData(r,c);
       if (mode == VERBOSE)
-	 PrintData(sky,r,c);
+	       PrintData(sky,r,c);
       map = Process(sky,r,c);
-      PrintMap(map,r,c);      
+      //PrintMap(map,r,c);      
+      t1 = time(NULL);
+      c1 = clock();
+
+      printf ("\tend (wall):              %ld\n", (long) t1);
+      printf ("\tend (CPU);               %d\n", (int) c1);
+      printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
+      printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
   }
    else
       Usage(argv[0]);
 }   
+  
