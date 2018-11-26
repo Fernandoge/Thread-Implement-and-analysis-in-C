@@ -112,9 +112,9 @@ void ReadData(int r, int c) {
    sky = calloc(r + 2,sizeof(unsigned char *));
    for (i = 0; i < r + 2; i = i + 1)
       sky[i] = calloc(c + 2,sizeof(unsigned char));
-   for (i = 1; i <= r; i = i + 1)
-      for (j = 1; j <= c; j = j + 1)  
-         scanf("%d",&sky[i][j]);
+   //for (i = 1; i <= r; i = i + 1)
+     // for (j = 1; j <= c; j = j + 1)  
+        // scanf("%d",&sky[i][j]);
 }
 
 
@@ -124,7 +124,7 @@ void ReadData(int r, int c) {
  */
 void Usage(char *message) {
   
-   printf("\nUsage: %s -O K < datafile",message);
+   printf("\nUsage: %s -O N K",message);
    printf("\n\nO in {S,V}\n\n");
    printf("K: Theads Number\n\n");
 }   
@@ -142,30 +142,21 @@ int main(int argc, char **argv) {
    struct Message **m;
    void *exit_status;   
 
-   if (argc == 3) {
-      time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
-      clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
-
-      printf ("using UNIX function time to measure wallclock time ... \n");
-      printf ("using UNIX function clock to measure CPU time ... \n");
-
-      t0 = time(NULL);
-      c0 = clock();
-
-      printf ("\tbegin (wall):            %ld\n", (long) t0);
-      printf ("\tbegin (CPU):             %d\n", (int) c0);
+   if (argc == 4) {
+      
 
       if (strcmp(argv[1],"-S") == 0)
       
 	 mode = SILENT;
       if (strcmp(argv[1],"-V") == 0)
          mode = VERBOSE;
-      k = atoi(argv[2]);
-      scanf("%d",&r);
-      scanf("%d",&c);
+      k = atoi(argv[3]);
+      //scanf("%d",&r);
+      //scanf("%d",&c);
+      r = c = atoi(argv[2]);
       ReadData(r,c);
       if (mode == 1)
-	 PrintData(r,c);
+	    PrintData(r,c);
       map = calloc(r,sizeof(char *));
       for (i = 0; i < r; i = i + 1)
          map[i] = calloc(c,sizeof(char));      
@@ -178,35 +169,55 @@ int main(int argc, char **argv) {
       s = c / k;
       rem = c % k;
       l = 1;
+      time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
+      clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
+
+      printf ("using UNIX function time to measure wallclock time ... \n");
+      printf ("using UNIX function clock to measure CPU time ... \n");
+
+      t0 = time(NULL);
+      c0 = clock();
+
+      printf ("\tbegin (wall):            %ld\n", (long) t0);
+      printf ("\tbegin (CPU):             %d\n", (int) c0);
       for (i = 0; i < k; i = i + 1) {
-	 if (mode == VERBOSE) 
-            printf("Main: creating thread %d\n", i);
-	 m[i]->myid = i;
-         m[i]->rvalue = r;
-	 if (rem != 0) {
-	    m[i]->size = s + 1;
-	    rem = rem - 1;
-	 }
-	 else
-	    m[i]->size = s;
-	 m[i]->cvalue = l;
-	 m[i]->opmode = mode;
-	 l = l + m[i]->size;
+	          if (mode == VERBOSE) 
+                printf("Main: creating thread %d\n", i);
+	          m[i]->myid = i;
+            m[i]->rvalue = r;
+	         if (rem != 0) {
+    	         m[i]->size = s + 1;
+    	          rem = rem - 1;
+          	 }
+        	 else
+        	    m[i]->size = s;
+    	    m[i]->cvalue = l;
+    	    m[i]->opmode = mode;
+    	    l = l + m[i]->size;
          pthread_create(&thread[i],&attribute,Process,(void *) m[i]);
       }      
-      pthread_attr_destroy(&attribute); 
-      for (i = 0; i < k; i = i + 1)
-         pthread_join(thread[i],&exit_status);
-      //PrintMap(r,c);      
-      t1 = time(NULL);
+
+       t1 = time(NULL);
       c1 = clock();
 
       printf ("\tend (wall):              %ld\n", (long) t1);
       printf ("\tend (CPU);               %d\n", (int) c1);
       printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
       printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
+
+      pthread_attr_destroy(&attribute); 
+
+      for (i = 0; i < k; i = i + 1)
+         pthread_join(thread[i],&exit_status);
+      //PrintMap(r,c);      
+
+     
+
+      
   }
    else
       Usage(argv[0]);
    return 0;
 }   
+
+     

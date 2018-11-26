@@ -16,10 +16,11 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#define STAR    '*'
-#define NOSTAR  ' '
-#define SILENT  0
+#define STAR    '*' 
+#define NOSTAR  ' ' 
+#define SILENT  0 
 #define VERBOSE 1
 
 
@@ -99,9 +100,9 @@ unsigned char **ReadData(int r, int c) {
    sky = calloc(r + 2,sizeof(unsigned char *));
    for (i = 0; i < r + 2; i = i + 1)
       sky[i] = calloc(c + 2,sizeof(unsigned char));
-   for (i = 1; i <= r; i = i + 1)
-      for (j = 1; j <= c; j = j + 1)  
-         scanf("%d",&sky[i][j]);
+   //for (i = 1; i <= r; i = i + 1)
+      //for (j = 1; j <= c; j = j + 1)  
+//scanf("%d",&sky[i][j]);
    return sky;
 }
 
@@ -112,7 +113,7 @@ unsigned char **ReadData(int r, int c) {
  */
 void Usage(char *message) {
   
-   printf("\nUsage: %s -O < datafile",message);
+   printf("\nUsage: %s -O N",message);
    printf("\n\nO in {S,V}\n\n");
 }   
    
@@ -127,11 +128,23 @@ int main(int argc, char **argv) {
    unsigned char **sky;
    char **map;
 
-   if (argc == 2) {
+   if (argc == 3) {
       time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
       clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
 
-      printf ("using UNIX function time to measure wallclock time ... \n");
+      
+
+      if (strcmp(argv[1],"-S") == 0)
+	 mode = SILENT;
+      if (strcmp(argv[1],"-V") == 0)
+         mode = VERBOSE;   
+      //scanf("%d",&r);
+      //scanf("%d",&c);
+       r=c=atoi(argv[2]);
+      sky = ReadData(r,c);
+      if (mode == VERBOSE)
+	       PrintData(sky,r,c);
+       printf ("using UNIX function time to measure wallclock time ... \n");
       printf ("using UNIX function clock to measure CPU time ... \n");
 
       t0 = time(NULL);
@@ -139,16 +152,6 @@ int main(int argc, char **argv) {
 
       printf ("\tbegin (wall):            %ld\n", (long) t0);
       printf ("\tbegin (CPU):             %d\n", (int) c0);
-
-      if (strcmp(argv[1],"-S") == 0)
-	 mode = SILENT;
-      if (strcmp(argv[1],"-V") == 0)
-         mode = VERBOSE;   
-      scanf("%d",&r);
-      scanf("%d",&c);
-      sky = ReadData(r,c);
-      if (mode == VERBOSE)
-	       PrintData(sky,r,c);
       map = Process(sky,r,c);
       //PrintMap(map,r,c);      
       t1 = time(NULL);
