@@ -1,13 +1,13 @@
 /******************************************************************************
  * 
- * FILE: stars-2014.c 
+ * FILE: StarsSecColumn.c
  *
  * DESCRIPTION: determines the position of stars of a sky sector taking as 
  *              input the light intensity.      
  * 
- * AUTHOR: Ruben Carvajal Schiaffino
+ * AUTHOR: Fernando Garcia Polgatti
  *
- * LAST REVISED: Santiago de Chile, 30/9/2014
+ * LAST REVISED: Santiago de Chile, 26/11/2018
  *
  *****************************************************************************/
 
@@ -37,8 +37,8 @@ char **Process(unsigned char **sky, int r, int c) {
    map = calloc(r,sizeof(char *));
    for (i = 0; i < r; i = i + 1)
       map[i] = calloc(c,sizeof(char));
-   for (i = 1; i <= r; i = i + 1)
-      for (j = 1; j <= c; j = j + 1) {
+   for (j = 1; i <= r; j = j + 1)
+      for (i = 1; i <= c; i = i + 1) {
          sum  = (float)(sky[i][j] + sky[i - 1][j] + sky[i][j + 1] + sky[i + 1][j] + sky[i][j - 1]);
          v = sum / 5.0;
 	 if (v > 6.0)

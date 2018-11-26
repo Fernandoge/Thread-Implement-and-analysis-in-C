@@ -1,14 +1,14 @@
 /******************************************************************************
  * 
- * FILE: par-stars.c 
+ * FILE: StarsPar.c
  *
  * DESCRIPTION: determines the position of stars of a sky sector taking as 
  *              input the light intensity. The program uses K threads to 
  *              solve the problem.      
  * 
- * AUTHOR: Ruben Carvajal Schiaffino
- *
- * LAST REVISED: Santiago de Chile, 30/9/2014
+ * AUTHOR: Fernando Garcia Polgatti
+
+ * LAST REVISED: Santiago de Chile, 26/11/2018
  *
  *****************************************************************************/
 
@@ -48,6 +48,7 @@ void *Process(void *p) {
       printf("\n\n**************************************\n\n");
       printf("From %d Rows = %d Cols = %d Size = %d - Beginning The Task\n\n",m->myid,m->rvalue,m->cvalue,m->size);
    }     
+    
    for (i = 1; i <= m->rvalue; i = i + 1)
       for (j = m->cvalue, k = 1; k <= m->size; j = j + 1, k = k + 1) {
          sum  = (float)(sky[i][j] + sky[i - 1][j] + sky[i][j + 1] + sky[i + 1][j] + sky[i][j - 1]);
@@ -59,6 +60,7 @@ void *Process(void *p) {
       } 
    if (m->opmode == VERBOSE)
       printf("From %d Ending The Task\n\n",m->myid);   
+    
    pthread_exit(0);
 }   
 
@@ -169,6 +171,8 @@ int main(int argc, char **argv) {
       s = c / k;
       rem = c % k;
       l = 1;
+      
+
       time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
       clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
 
@@ -179,7 +183,9 @@ int main(int argc, char **argv) {
       c0 = clock();
 
       printf ("\tbegin (wall):            %ld\n", (long) t0);
-      printf ("\tbegin (CPU):             %d\n", (int) c0);
+        printf ("\tbegin (CPU):             %d\n", (int) c0);
+
+
       for (i = 0; i < k; i = i + 1) {
 	          if (mode == VERBOSE) 
                 printf("Main: creating thread %d\n", i);
@@ -194,23 +200,29 @@ int main(int argc, char **argv) {
     	    m[i]->cvalue = l;
     	    m[i]->opmode = mode;
     	    l = l + m[i]->size;
+
+
          pthread_create(&thread[i],&attribute,Process,(void *) m[i]);
+
+
       }      
 
-       t1 = time(NULL);
+       
+
+      pthread_attr_destroy(&attribute); 
+
+      
+
+      for (i = 0; i < k; i = i + 1)
+         pthread_join(thread[i],&exit_status);
+      //PrintMap(r,c);      
+      t1 = time(NULL);
       c1 = clock();
 
       printf ("\tend (wall):              %ld\n", (long) t1);
       printf ("\tend (CPU);               %d\n", (int) c1);
       printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
       printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
-
-      pthread_attr_destroy(&attribute); 
-
-      for (i = 0; i < k; i = i + 1)
-         pthread_join(thread[i],&exit_status);
-      //PrintMap(r,c);      
-
      
 
       
