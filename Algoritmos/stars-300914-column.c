@@ -99,8 +99,8 @@ unsigned char **ReadData(int r, int c) {
    sky = calloc(r + 2,sizeof(unsigned char *));
    for (i = 0; i < r + 2; i = i + 1)
       sky[i] = calloc(c + 2,sizeof(unsigned char));
-   for (i = 1; i <= r; i = i + 1)
-      for (j = 1; j <= c; j = j + 1)  
+   for (j = 1; j <= r; j = j + 1)
+      for (i = 1; i <= c; i = i + 1)  
          scanf("%d",&sky[i][j]);
    return sky;
 }
