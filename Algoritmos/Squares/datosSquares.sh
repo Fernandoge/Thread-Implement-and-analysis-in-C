@@ -1,0 +1,37 @@
+./ParSquares 4000000 1 >> resultadosParSquares.txt
+./ParSquares 4000000 2 >> resultadosParSquares.txt
+./ParSquares 6000000 3 >> resultadosParSquares.txt
+./ParSquares 4000000 4 >> resultadosParSquares.txt
+./ParSquares 4000000 5 >> resultadosParSquares.txt
+./ParSquares 4000000 6 >> resultadosParSquares.txt
+./ParSquares 4000000 7 >> resultadosParSquares.txt
+./ParSquares 6000000 1 >> resultadosParSquares.txt
+./ParSquares 6000000 2 >> resultadosParSquares.txt
+./ParSquares 6000000 3 >> resultadosParSquares.txt
+./ParSquares 6000000 4 >> resultadosParSquares.txt
+./ParSquares 6000000 5 >> resultadosParSquares.txt
+./ParSquares 6000000 6 >> resultadosParSquares.txt
+./ParSquares 6000000 7 >> resultadosParSquares.txt
+./ParSquares 8000000 1 >> resultadosParSquares.txt
+./ParSquares 8000000 2 >> resultadosParSquares.txt
+./ParSquares 8000000 3 >> resultadosParSquares.txt
+./ParSquares 8000000 4 >> resultadosParSquares.txt
+./ParSquares 8000000 5 >> resultadosParSquares.txt
+./ParSquares 8000000 6 >> resultadosParSquares.txt
+./ParSquares 8000000 7 >> resultadosParSquares.txt
+./ParSquares 10000000 1 >> resultadosParSquares.txt
+./ParSquares 10000000 2 >> resultadosParSquares.txt
+./ParSquares 10000000 3 >> resultadosParSquares.txt
+./ParSquares 10000000 4 >> resultadosParSquares.txt
+./ParSquares 10000000 5 >> resultadosParSquares.txt
+./ParSquares 10000000 6 >> resultadosParSquares.txt
+./ParSquares 10000000 7 >> resultadosParSquares.txt
+./ParSquares 12000000 1 >> resultadosParSquares.txt
+./ParSquares 12000000 2 >> resultadosParSquares.txt
+./ParSquares 12000000 3 >> resultadosParSquares.txt
+./ParSquares 12000000 4 >> resultadosParSquares.txt
+./ParSquares 12000000 5 >> resultadosParSquares.txt
+./ParSquares 12000000 6 >> resultadosParSquares.txt
+./ParSquares 12000000 7 >> resultadosParSquares.txt
+
+
