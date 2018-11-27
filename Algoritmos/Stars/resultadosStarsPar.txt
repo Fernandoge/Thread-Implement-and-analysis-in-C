@@ -1,0 +1,210 @@
+tamaño matriz: 10000
+n° threads: 2
+elapsed CPU time: 1.000000
+
+tamaño matriz: 10000
+n° threads: 3
+elapsed CPU time: 0.968750
+
+tamaño matriz: 10000
+n° threads: 4
+elapsed CPU time: 1.015625
+
+tamaño matriz: 10000
+n° threads: 5
+elapsed CPU time: 0.953125
+
+tamaño matriz: 10000
+n° threads: 6
+elapsed CPU time: 0.984375
+
+tamaño matriz: 10000
+n° threads: 7
+elapsed CPU time: 1.015625
+
+**************************************columnas ahora****
+
+tamaño matriz: 10000
+n° threads: 2
+elapsed CPU time: 1.750000
+
+tamaño matriz: 10000
+n° threads: 3
+elapsed CPU time: 1.781250
+
+tamaño matriz: 10000
+n° threads: 4
+elapsed CPU time: 1.812500
+
+tamaño matriz: 10000
+n° threads: 5
+elapsed CPU time: 1.812500
+
+tamaño matriz: 10000
+n° threads: 6
+elapsed CPU time: 1.890625
+
+tamaño matriz: 10000
+n° threads: 7
+elapsed CPU time: 1.750000
+
+
+*************************************filas
+
+tamaño matriz: 13000
+n° threads: 2
+elapsed CPU time: 1.671875
+
+tamaño matriz: 13000
+n° threads: 3
+elapsed CPU time: 1.718750
+
+tamaño matriz: 13000
+n° threads: 4
+elapsed CPU time: 1.718750
+
+tamaño matriz: 13000
+n° threads: 5
+elapsed CPU time: 1.640625
+
+tamaño matriz: 13000
+n° threads: 6
+elapsed CPU time: 1.687500
+
+tamaño matriz: 13000
+n° threads: 7
+elapsed CPU time: 1.640625
+
+*****************************column
+
+tamaño matriz: 13000
+n° threads: 2
+elapsed CPU time: 3.046875
+
+tamaño matriz: 13000
+n° threads: 3
+elapsed CPU time: 3.000000
+
+tamaño matriz: 13000
+n° threads: 4
+elapsed CPU time: 3.046875
+
+tamaño matriz: 13000
+n° threads: 5
+elapsed CPU time: 3.000000
+
+tamaño matriz: 13000
+n° threads: 6
+elapsed CPU time: 3.031250
+
+tamaño matriz: 13000
+n° threads: 7
+elapsed CPU time: 3.031250
+
+
+***************************filas
+
+
+tamaño matriz: 16000
+n° threads: 2
+elapsed CPU time: 2.515625
+
+tamaño matriz: 16000
+n° threads: 3
+elapsed CPU time: 2.562500
+
+tamaño matriz: 16000
+n° threads: 4
+elapsed CPU time: 2.515625
+
+tamaño matriz: 16000
+n° threads: 5
+elapsed CPU time: 2.578125
+
+tamaño matriz: 16000
+n° threads: 6
+elapsed CPU time: 2.609375
+
+tamaño matriz: 16000
+n° threads: 7
+elapsed CPU time: 2.546875
+
+***************************column
+
+tamaño matriz: 16000
+n° threads: 2
+elapsed CPU time: 4.859375
+
+tamaño matriz: 16000
+n° threads: 3
+elapsed CPU time: 4.578125
+
+tamaño matriz: 16000
+n° threads: 4
+elapsed CPU time: 4.656250
+
+tamaño matriz: 16000
+n° threads: 5
+elapsed CPU time: 4.687500
+
+tamaño matriz: 16000
+n° threads: 6
+elapsed CPU time: 4.546875
+
+tamaño matriz: 16000
+n° threads: 7
+elapsed CPU time: 4.656250
+
+*****************************fila
+
+tamaño matriz: 20000
+n° threads: 2
+elapsed CPU time: 3.890625
+
+tamaño matriz: 20000
+n° threads: 3
+elapsed CPU time: 3.937500
+
+tamaño matriz: 20000
+n° threads: 4
+elapsed CPU time: 3.937500
+
+tamaño matriz: 20000
+n° threads: 5
+elapsed CPU time: 3.921875
+
+tamaño matriz: 20000
+n° threads: 6
+elapsed CPU time: 3.968750
+
+tamaño matriz: 20000
+n° threads: 7
+elapsed CPU time: 3.953125
+
+**************************columna
+
+
+tamaño matriz: 20000
+n° threads: 2
+elapsed CPU time: 9.312500
+
+tamaño matriz: 20000
+n° threads: 3
+elapsed CPU time: 11.375000
+
+tamaño matriz: 20000
+n° threads: 4
+elapsed CPU time: 10.453125
+
+tamaño matriz: 20000
+n° threads: 5
+elapsed CPU time: 8.781250
+
+tamaño matriz: 20000
+n° threads: 6
+elapsed CPU time: 7.703125
+
+tamaño matriz: 20000
+n° threads: 7
+elapsed CPU time: 7.468750
+

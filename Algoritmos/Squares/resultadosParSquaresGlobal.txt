@@ -1,0 +1,140 @@
+tamaño n: 40000000
+n° threads: 1
+elapsed CPU time: 0.500000
+
+tamaño n: 40000000
+n° threads: 2
+elapsed CPU time: 0.531250
+
+tamaño n: 40000000
+n° threads: 3
+elapsed CPU time: 0.531250
+
+tamaño n: 40000000
+n° threads: 4
+elapsed CPU time: 0.625000
+
+tamaño n: 40000000
+n° threads: 5
+elapsed CPU time: 0.609375
+
+tamaño n: 40000000
+n° threads: 6
+elapsed CPU time: 0.609375
+
+tamaño n: 40000000
+n° threads: 7
+elapsed CPU time: 0.640625
+
+tamaño n: 60000000
+n° threads: 1
+elapsed CPU time: 0.765625
+
+tamaño n: 60000000
+n° threads: 2
+elapsed CPU time: 0.843750
+
+tamaño n: 60000000
+n° threads: 3
+elapsed CPU time: 0.812500
+
+tamaño n: 60000000
+n° threads: 4
+elapsed CPU time: 0.875000
+
+tamaño n: 60000000
+n° threads: 5
+elapsed CPU time: 0.859375
+
+tamaño n: 60000000
+n° threads: 6
+elapsed CPU time: 0.906250
+
+tamaño n: 60000000
+n° threads: 7
+elapsed CPU time: 0.875000
+
+tamaño n: 80000000
+n° threads: 1
+elapsed CPU time: 1.078125
+
+tamaño n: 80000000
+n° threads: 2
+elapsed CPU time: 1.078125
+
+tamaño n: 80000000
+n° threads: 3
+elapsed CPU time: 1.125000
+
+tamaño n: 80000000
+n° threads: 4
+elapsed CPU time: 1.171875
+
+tamaño n: 80000000
+n° threads: 5
+elapsed CPU time: 1.281250
+
+tamaño n: 80000000
+n° threads: 6
+elapsed CPU time: 1.265625
+
+tamaño n: 80000000
+n° threads: 7
+elapsed CPU time: 1.250000
+
+tamaño n: 100000000
+n° threads: 1
+elapsed CPU time: 1.312500
+
+tamaño n: 100000000
+n° threads: 2
+elapsed CPU time: 1.406250
+
+tamaño n: 100000000
+n° threads: 3
+elapsed CPU time: 1.359375
+
+tamaño n: 100000000
+n° threads: 4
+elapsed CPU time: 1.515625
+
+tamaño n: 100000000
+n° threads: 5
+elapsed CPU time: 1.531250
+
+tamaño n: 100000000
+n° threads: 6
+elapsed CPU time: 1.562500
+
+tamaño n: 100000000
+n° threads: 7
+elapsed CPU time: 1.562500
+
+tamaño n: 120000000
+n° threads: 1
+elapsed CPU time: 1.578125
+
+tamaño n: 120000000
+n° threads: 2
+elapsed CPU time: 1.687500
+
+tamaño n: 120000000
+n° threads: 3
+elapsed CPU time: 1.718750
+
+tamaño n: 120000000
+n° threads: 4
+elapsed CPU time: 1.828125
+
+tamaño n: 120000000
+n° threads: 5
+elapsed CPU time: 1.906250
+
+tamaño n: 120000000
+n° threads: 6
+elapsed CPU time: 1.859375
+
+tamaño n: 120000000
+n° threads: 7
+elapsed CPU time: 1.859375
+

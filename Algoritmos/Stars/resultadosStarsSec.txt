@@ -1,0 +1,146 @@
+
+
+tamaño matriz: 10000
+elapsed CPU time: 1.031250
+
+tamaño matriz: 10000
+elapsed CPU time: 1.015625
+
+tamaño matriz: 10000
+elapsed CPU time: 1.046875
+
+tamaño matriz: 10000
+elapsed CPU time: 1.078125
+
+tamaño matriz: 10000
+elapsed CPU time: 1.093750
+
+tamaño matriz: 10000
+elapsed CPU time: 1.078125
+
+tamaño matriz: 10000
+elapsed CPU time: 2.031250
+
+tamaño matriz: 10000
+elapsed CPU time: 2.187500
+
+tamaño matriz: 10000
+elapsed CPU time: 2.046875
+
+tamaño matriz: 10000
+elapsed CPU time: 2.140625
+
+tamaño matriz: 10000
+elapsed CPU time: 2.000000
+
+tamaño matriz: 10000
+elapsed CPU time: 2.015625
+
+tamaño matriz: 13000
+elapsed CPU time: 1.843750
+
+tamaño matriz: 13000
+elapsed CPU time: 1.875000
+
+tamaño matriz: 13000
+elapsed CPU time: 1.875000
+
+tamaño matriz: 13000
+elapsed CPU time: 1.859375
+
+tamaño matriz: 13000
+elapsed CPU time: 1.875000
+
+tamaño matriz: 13000
+elapsed CPU time: 1.828125
+
+tamaño matriz: 13000
+elapsed CPU time: 3.687500
+
+tamaño matriz: 13000
+elapsed CPU time: 3.359375
+
+tamaño matriz: 13000
+elapsed CPU time: 3.593750
+
+tamaño matriz: 13000
+elapsed CPU time: 3.625000
+
+tamaño matriz: 13000
+elapsed CPU time: 3.562500
+
+tamaño matriz: 13000
+elapsed CPU time: 3.406250
+
+tamaño matriz: 16000
+elapsed CPU time: 2.687500
+
+tamaño matriz: 16000
+elapsed CPU time: 2.640625
+
+tamaño matriz: 16000
+elapsed CPU time: 2.656250
+
+tamaño matriz: 16000
+elapsed CPU time: 2.640625
+
+tamaño matriz: 16000
+elapsed CPU time: 2.671875
+
+tamaño matriz: 16000
+elapsed CPU time: 2.640625
+
+tamaño matriz: 16000
+elapsed CPU time: 6.171875
+
+tamaño matriz: 16000
+elapsed CPU time: 7.593750
+
+tamaño matriz: 16000
+elapsed CPU time: 7.765625
+
+tamaño matriz: 16000
+elapsed CPU time: 7.406250
+
+tamaño matriz: 16000
+elapsed CPU time: 8.906250
+
+tamaño matriz: 16000
+elapsed CPU time: 7.593750
+
+tamaño matriz: 20000
+elapsed CPU time: 4.359375
+
+tamaño matriz: 20000
+elapsed CPU time: 4.375000
+
+tamaño matriz: 20000
+elapsed CPU time: 4.406250
+
+tamaño matriz: 20000
+elapsed CPU time: 4.218750
+
+tamaño matriz: 20000
+elapsed CPU time: 4.375000
+
+tamaño matriz: 20000
+elapsed CPU time: 4.406250
+
+tamaño matriz: 20000
+elapsed CPU time: 12.578125
+
+tamaño matriz: 20000
+elapsed CPU time: 13.531250
+
+tamaño matriz: 20000
+elapsed CPU time: 13.156250
+
+tamaño matriz: 20000
+elapsed CPU time: 12.515625
+
+tamaño matriz: 20000
+elapsed CPU time: 12.187500
+
+tamaño matriz: 20000
+elapsed CPU time: 14.000000
+

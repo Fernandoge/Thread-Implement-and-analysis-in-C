@@ -1,0 +1,140 @@
+tamaño matriz: 4000000
+n° threads: 1
+elapsed CPU time: 0.187500
+
+tamaño matriz: 4000000
+n° threads: 2
+elapsed CPU time: 0.671875
+
+tamaño matriz: 6000000
+n° threads: 3
+elapsed CPU time: 1.703125
+
+tamaño matriz: 4000000
+n° threads: 4
+elapsed CPU time: 1.421875
+
+tamaño matriz: 4000000
+n° threads: 5
+elapsed CPU time: 1.515625
+
+tamaño matriz: 4000000
+n° threads: 6
+elapsed CPU time: 1.687500
+
+tamaño matriz: 4000000
+n° threads: 7
+elapsed CPU time: 1.640625
+
+tamaño matriz: 6000000
+n° threads: 1
+elapsed CPU time: 0.281250
+
+tamaño matriz: 6000000
+n° threads: 2
+elapsed CPU time: 1.078125
+
+tamaño matriz: 6000000
+n° threads: 3
+elapsed CPU time: 1.625000
+
+tamaño matriz: 6000000
+n° threads: 4
+elapsed CPU time: 2.093750
+
+tamaño matriz: 6000000
+n° threads: 5
+elapsed CPU time: 2.062500
+
+tamaño matriz: 6000000
+n° threads: 6
+elapsed CPU time: 2.093750
+
+tamaño matriz: 6000000
+n° threads: 7
+elapsed CPU time: 2.265625
+
+tamaño matriz: 8000000
+n° threads: 1
+elapsed CPU time: 0.375000
+
+tamaño matriz: 8000000
+n° threads: 2
+elapsed CPU time: 1.531250
+
+tamaño matriz: 8000000
+n° threads: 3
+elapsed CPU time: 2.234375
+
+tamaño matriz: 8000000
+n° threads: 4
+elapsed CPU time: 3.187500
+
+tamaño matriz: 8000000
+n° threads: 5
+elapsed CPU time: 3.000000
+
+tamaño matriz: 8000000
+n° threads: 6
+elapsed CPU time: 3.156250
+
+tamaño matriz: 8000000
+n° threads: 7
+elapsed CPU time: 2.812500
+
+tamaño matriz: 10000000
+n° threads: 1
+elapsed CPU time: 0.468750
+
+tamaño matriz: 10000000
+n° threads: 2
+elapsed CPU time: 1.812500
+
+tamaño matriz: 10000000
+n° threads: 3
+elapsed CPU time: 2.593750
+
+tamaño matriz: 10000000
+n° threads: 4
+elapsed CPU time: 3.312500
+
+tamaño matriz: 10000000
+n° threads: 5
+elapsed CPU time: 3.718750
+
+tamaño matriz: 10000000
+n° threads: 6
+elapsed CPU time: 3.109375
+
+tamaño matriz: 10000000
+n° threads: 7
+elapsed CPU time: 3.937500
+
+tamaño matriz: 12000000
+n° threads: 1
+elapsed CPU time: 0.593750
+
+tamaño matriz: 12000000
+n° threads: 2
+elapsed CPU time: 2.109375
+
+tamaño matriz: 12000000
+n° threads: 3
+elapsed CPU time: 3.000000
+
+tamaño matriz: 12000000
+n° threads: 4
+elapsed CPU time: 4.265625
+
+tamaño matriz: 12000000
+n° threads: 5
+elapsed CPU time: 4.093750
+
+tamaño matriz: 12000000
+n° threads: 6
+elapsed CPU time: 4.734375
+
+tamaño matriz: 12000000
+n° threads: 7
+elapsed CPU time: 4.593750
+

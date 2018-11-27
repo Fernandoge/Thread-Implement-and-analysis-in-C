@@ -1,6 +1,6 @@
 /******************************************************************************
  * 
- * FILE: StarsSecColumn.c
+ * FILE: StarsSec.c
  *
  * DESCRIPTION: determines the position of stars of a sky sector taking as 
  *              input the light intensity.      
@@ -37,7 +37,7 @@ char **Process(unsigned char **sky, int r, int c) {
    map = calloc(r,sizeof(char *));
    for (i = 0; i < r; i = i + 1)
       map[i] = calloc(c,sizeof(char));
-   for (j = 1; i <= r; j = j + 1)
+   for (j = 1; j <= r; j = j + 1)
       for (i = 1; i <= c; i = i + 1) {
          sum  = (float)(sky[i][j] + sky[i - 1][j] + sky[i][j + 1] + sky[i + 1][j] + sky[i][j - 1]);
          v = sum / 5.0;
@@ -144,23 +144,17 @@ int main(int argc, char **argv) {
       sky = ReadData(r,c);
       if (mode == VERBOSE)
 	       PrintData(sky,r,c);
-       printf ("using UNIX function time to measure wallclock time ... \n");
-      printf ("using UNIX function clock to measure CPU time ... \n");
+
 
       t0 = time(NULL);
       c0 = clock();
-
-      printf ("\tbegin (wall):            %ld\n", (long) t0);
-      printf ("\tbegin (CPU):             %d\n", (int) c0);
       map = Process(sky,r,c);
       //PrintMap(map,r,c);      
       t1 = time(NULL);
       c1 = clock();
 
-      printf ("\tend (wall):              %ld\n", (long) t1);
-      printf ("\tend (CPU);               %d\n", (int) c1);
-      printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
-      printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
+      printf("tamaño matriz: %d\n",c);
+      printf ("elapsed CPU time: %f\n\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
   }
    else
       Usage(argv[0]);

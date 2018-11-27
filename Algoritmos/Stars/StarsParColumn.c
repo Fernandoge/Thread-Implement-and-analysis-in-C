@@ -15,7 +15,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 #define STAR    '*'
 #define NOSTAR  ' '
@@ -50,7 +50,7 @@ void *Process(void *p) {
    }     
     
    for (j = 1; j <= m->rvalue; j = j + 1)
-      for (i = m->cvalue, k = 1; k <= m->size; i = i + 1, i = i + 1) {
+      for (i = m->cvalue, i = 1; i <= m->size; i = i + 1, k = k + 1) {
          sum  = (float)(sky[i][j] + sky[i - 1][j] + sky[i][j + 1] + sky[i + 1][j] + sky[i][j - 1]);
          v = sum / 5.0;
 	 if (v > 6.0)
@@ -149,7 +149,7 @@ int main(int argc, char **argv) {
 
       if (strcmp(argv[1],"-S") == 0)
       
-	     mode = SILENT;
+	 mode = SILENT;
       if (strcmp(argv[1],"-V") == 0)
          mode = VERBOSE;
       k = atoi(argv[3]);
@@ -176,14 +176,8 @@ int main(int argc, char **argv) {
       time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
       clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
 
-      printf ("using UNIX function time to measure wallclock time ... \n");
-      printf ("using UNIX function clock to measure CPU time ... \n");
-
       t0 = time(NULL);
       c0 = clock();
-
-      printf ("\tbegin (wall):            %ld\n", (long) t0);
-        printf ("\tbegin (CPU):             %d\n", (int) c0);
 
 
       for (i = 0; i < k; i = i + 1) {
@@ -219,10 +213,8 @@ int main(int argc, char **argv) {
       t1 = time(NULL);
       c1 = clock();
 
-      printf ("\tend (wall):              %ld\n", (long) t1);
-      printf ("\tend (CPU);               %d\n", (int) c1);
-      printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
-      printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
+      printf("tamaño matriz: %d\nn° threads: %d\n",c,k );
+      printf ("elapsed CPU time: %f\n\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
      
 
       

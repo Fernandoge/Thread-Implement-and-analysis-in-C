@@ -1,9 +1,9 @@
 /*
  * ParSquares: computes the square roots for numbers between 1 and n using K threads
  *
- * Programmer: Ruben Carvajal Schiaffino
+ * Programmer: Fernando Garcia Polgatti
  *
- * Santiago de Chile: 13/11/2013
+ * Santiago de Chile: 26/11/2013
  *
  */
 
@@ -96,17 +96,14 @@ int main(int argc, char *argv[]) {
       pthread_attr_setdetachstate(&attribute,PTHREAD_CREATE_JOINABLE);
 
 
-      printf ("using UNIX function time to measure wallclock time ... \n");
-      printf ("using UNIX function clock to measure CPU time ... \n");
+  
       t0 = time(NULL);
       c0 = clock();
 
-      printf ("\tbegin (wall):            %ld\n", (long) t0);
-      printf ("\tbegin (CPU):             %d\n", (int) c0);
 
 
       for (ii = 0; ii < k; ii = ii + 1) {
-         printf("Main: creating thread %d\n", ii);
+         //printf("Main: creating thread %d\n", ii);
          m[ii]->myid = ii;
          m[ii]->nvalue = n;
          m[ii]->numthreads = k;
@@ -130,10 +127,8 @@ int main(int argc, char *argv[]) {
       t1 = time(NULL);
       c1 = clock();
 
-      printf ("\tend (wall):              %ld\n", (long) t1);
-      printf ("\tend (CPU);               %d\n", (int) c1);
-      printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
-      printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
+      printf("tamaño matriz: %d\nn° threads: %d\n",n,k );
+      printf ("elapsed CPU time: %f\n\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
 
       /*printf("\n\n**************************************\n\n");
       for (j = 0, l = 1; j < k; j = j + 1)

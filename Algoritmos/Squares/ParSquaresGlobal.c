@@ -84,13 +84,8 @@ int main(int argc, char *argv[]) {
 
       /************************* TimeClock starts ********************************/
 
-      printf ("using UNIX function time to measure wallclock time ... \n");
-      printf ("using UNIX function clock to measure CPU time ... \n");
       t0 = time(NULL);
       c0 = clock();
-
-      printf ("\n\tbegin (wall):            %ld\n", (long) t0);
-      printf ("\tbegin (CPU):             %d\n", (int) c0);
 
       for (i = 0; i < k; i = i + 1) {
          //printf("Main: creating thread %d\n", i);
@@ -106,16 +101,14 @@ int main(int argc, char *argv[]) {
       pthread_attr_destroy(&attribute); 
       for (i = 0; i < k; i = i + 1)
          pthread_join(thread[i],&exit_status);
-      printf("\n\n**************************************\n\n");
+      //printf("\n\n**************************************\n\n");
          
 
       t1 = time(NULL);
       c1 = clock();
 
-      printf ("\n\tend (wall):              %ld\n", (long) t1);
-      printf ("\tend (CPU);               %d\n", (int) c1);
-      printf ("\telapsed wall clock time: %ld\n", (long) (t1 - t0));
-      printf ("\telapsed CPU time:        %f\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
+      printf("tamaño n: %d\nn° threads: %d\n",n,k );
+      printf ("elapsed CPU time: %f\n\n", (float) (c1 - c0)/CLOCKS_PER_SEC);
 
       /************************* Time/Clock ends   ****************************/
 
