@@ -1,22 +1,28 @@
+ /**************************************************************************
+ * AUTHOR: Fernando Garcia Polgatti
+
+ * LAST REVISED: Santiago de Chile, 26/11/2018
+ *
+ *****************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
 #include <sys/types.h>
-#include <time.h>
 
 
-struct Node{
+struct Nodo{
 	int data;
-	struct Node* next_node;
+	struct Nodo* next_node;
 };
-struct NodeDub{
+struct DubNodo{
 	int data;
-	struct NodeDub* next_node_dub;
-	struct Node* next_node;
+	struct DubNodo* next_node_dub;
+	struct Nodo* next_node;
 };
 
-void printList(struct Node *n) { 
+void printList(struct Nodo *n) { 
 	printf("[");
   	while (n != NULL){	 
      	printf("%d", n->data); 
@@ -24,21 +30,11 @@ void printList(struct Node *n) {
   	} 
   	printf("]\n");
 } 
-void printListDub(struct NodeDub *n) { 
-  	while (n != NULL){	 
-     	printf("%d", n->data);
-     	printList(n->next_node); 
-     	n = n->next_node_dub; 
-  	} 
-} 
 
-void printPowerSet(struct NodeDub *head, int thread, int n, int mode) { 
-	//mode = 0: -s
-	//mode = 1: -v
-	struct Node* temp = NULL;
-	struct NodeDub* tempDub = NULL;
+void imprimirPowerSet(struct DubNodo *head, int thread, int n, int mode) { 
+	struct Nodo* temp = NULL;
+	struct DubNodo* tempDub = NULL;
 	
-	// Retrieving size of the set 
 	int setSize = 0;
 	tempDub = head;
 	temp = tempDub->next_node;
@@ -47,8 +43,8 @@ void printPowerSet(struct NodeDub *head, int thread, int n, int mode) {
 		setSize++;
 	}
 
-	struct Node** pointers = NULL;
-	pointers = malloc(n * sizeof(struct Node*));
+	struct Nodo** pointers = NULL;
+	pointers = malloc(n * sizeof(struct Nodo*));
 	tempDub = head;
 	for(int i = 0;i < n;i++){
 		pointers[i] = tempDub->next_node;
@@ -103,88 +99,72 @@ int powpow(int number, int times) {
 	}
 }
 
-struct NodeDub* createList(int n, int jMax){
-	struct NodeDub* head = NULL;
-	struct NodeDub* lastDub = NULL;
-	struct NodeDub* tempDub = NULL;
-	struct Node* lastNode = NULL;
-	struct Node* tempNode = NULL;
+struct DubNodo* createList(int n, int jMax){
+	struct DubNodo* head = NULL;
+	struct DubNodo* lastDub = NULL;
+	struct DubNodo* tempDub = NULL;
+	struct Nodo* lastNode = NULL;
+	struct Nodo* tempNode = NULL;
 
-	/* CREATING LIST */
-	head = (struct NodeDub*)malloc(sizeof(struct NodeDub));
-	lastNode = (struct Node*)malloc(sizeof(struct Node));
+	head = (struct DubNodo*)malloc(sizeof(struct DubNodo));
+	lastNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 	head->next_node= lastNode;
 	head->data=1;
 	for(int i = 1;i < jMax;i++){
-  		tempNode = (struct Node*)malloc(sizeof(struct Node));
+  		tempNode = (struct Nodo*)malloc(sizeof(struct Nodo));
   		lastNode->next_node = tempNode;
   		lastNode = tempNode;
 	}
-	lastDub = (struct NodeDub*)malloc(sizeof(struct NodeDub));
+	lastDub = (struct DubNodo*)malloc(sizeof(struct DubNodo));
 	head->next_node_dub = lastDub;
   	
   	
   	for(int i = 2;i < n;i++){
-  		tempDub = (struct NodeDub*)malloc(sizeof(struct NodeDub));
+  		tempDub = (struct DubNodo*)malloc(sizeof(struct DubNodo));
   		lastDub->next_node_dub = tempDub;
   		lastDub->data=i;
-  		lastNode = (struct Node*)malloc(sizeof(struct Node));
+  		lastNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 		lastDub->next_node= lastNode;
 		for(int i = 1;i < jMax;i++){
-	  		tempNode = (struct Node*)malloc(sizeof(struct Node));
+	  		tempNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 	  		lastNode->next_node = tempNode;
-	  		//lastDub->next_node = lastNode;
 	  		lastNode = tempNode;
 		}
-  		//lastDub->next_node = lastNode;
   		lastDub = tempDub;
 
   	}
-  	lastNode = (struct Node*)malloc(sizeof(struct Node));
+  	lastNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 	lastDub->next_node= lastNode;
 	lastDub->data=n;
 	for(int i = 1;i < jMax;i++){
-  		tempNode = (struct Node*)malloc(sizeof(struct Node));
+  		tempNode = (struct Nodo*)malloc(sizeof(struct Nodo));
   		lastNode->next_node = tempNode;
   		lastNode = tempNode;
 	}
-	/* END LIST */
+
 	return head;
 }
 
-struct NodeDub* fillPowerSet(struct NodeDub* head, int index_start,int index_end,int n,int jMax){
-	//printf("%d %d\n",index_start,index_end );
+struct DubNodo* fillPowerSet(struct DubNodo* head, int index_start,int index_end,int n,int jMax){
 
-	struct NodeDub* head_temp = NULL;
-	struct Node** pointers = NULL;
-	struct Node* pointer_temp = NULL;
-	pointers = malloc(n * sizeof(struct Node*));
-	//pointers[0] = NULL;
-	//printListDub(pointers);
-	//printList(pointers[0]);
-	//printList(pointers[1]);
-	//printList(pointers[2]);
-	//printList(pointers[3]);
+	struct DubNodo* head_temp = NULL;
+	struct Nodo** pointers = NULL;
+	struct Nodo* pointer_temp = NULL;
+	pointers = malloc(n * sizeof(struct Nodo*));
+
 
 	head_temp = head;
 	for(int i = 0;i < n;i++){
 		pointers[i] = head_temp->next_node;
-		//printf("%d", head_temp->data);
 		head_temp = head_temp->next_node_dub;
 	}
-	//printf("\n");
-
-	//head_temp = head;
-	//printListDub(head_temp);
 	char* string_temp = malloc(n * sizeof(char));
 	for(int i = index_start-1;i<index_end-1 && i < jMax-1;i++){
 		strcpy(string_temp,decimal_to_binary(i+1,n));
 		for(int j = 0;j < n;j++){
-			//printf("%d", string_temp[j]-'0');
 			pointers[j]->data = string_temp[j]-'0';
 			pointers[j] = pointers[j]->next_node;
 		}
-		//printf("%s %d\n", string_temp, i+1);
 	}
 	return head;
 }
@@ -192,11 +172,11 @@ struct NodeDub* fillPowerSet(struct NodeDub* head, int index_start,int index_end
 struct createListArgs{
 	int n;
 	int jMax;
-	struct NodeDub* ret;
+	struct DubNodo* ret;
 };
 
 struct fillPowerSetArgs{
-	struct NodeDub* head;
+	struct DubNodo* head;
 	int index_start;
 	int index_end;
 	int n;
@@ -208,96 +188,76 @@ void* createListPTHREAD(void *arg){
 	int jMax = ((struct createListArgs*)arg)->jMax; 
 	//printf("%d %d\n", n,jMax);
 
-	struct NodeDub* head = NULL;
-	struct NodeDub* lastDub = NULL;
-	struct NodeDub* tempDub = NULL;
-	struct Node* lastNode = NULL;
-	struct Node* tempNode = NULL;
+	struct DubNodo* head = NULL;
+	struct DubNodo* lastDub = NULL;
+	struct DubNodo* tempDub = NULL;
+	struct Nodo* lastNode = NULL;
+	struct Nodo* tempNode = NULL;
 
 	/* CREATING LIST */
-	head = (struct NodeDub*)malloc(sizeof(struct NodeDub));
-	lastNode = (struct Node*)malloc(sizeof(struct Node));
+	head = (struct DubNodo*)malloc(sizeof(struct DubNodo));
+	lastNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 	head->next_node= lastNode;
 	head->data=1;
 	for(int i = 1;i < jMax;i++){
-  		tempNode = (struct Node*)malloc(sizeof(struct Node));
+  		tempNode = (struct Nodo*)malloc(sizeof(struct Nodo));
   		lastNode->next_node = tempNode;
   		lastNode = tempNode;
 	}
-	lastDub = (struct NodeDub*)malloc(sizeof(struct NodeDub));
+	lastDub = (struct DubNodo*)malloc(sizeof(struct DubNodo));
 	head->next_node_dub = lastDub;
   	
   	
   	for(int i = 2;i < n;i++){
-  		tempDub = (struct NodeDub*)malloc(sizeof(struct NodeDub));
+  		tempDub = (struct DubNodo*)malloc(sizeof(struct DubNodo));
   		lastDub->next_node_dub = tempDub;
   		lastDub->data=i;
-  		lastNode = (struct Node*)malloc(sizeof(struct Node));
+  		lastNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 		lastDub->next_node= lastNode;
 		for(int i = 1;i < jMax;i++){
-	  		tempNode = (struct Node*)malloc(sizeof(struct Node));
+	  		tempNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 	  		lastNode->next_node = tempNode;
-	  		//lastDub->next_node = lastNode;
 	  		lastNode = tempNode;
 		}
-  		//lastDub->next_node = lastNode;
   		lastDub = tempDub;
 
   	}
-  	lastNode = (struct Node*)malloc(sizeof(struct Node));
+  	lastNode = (struct Nodo*)malloc(sizeof(struct Nodo));
 	lastDub->next_node= lastNode;
 	lastDub->data=n;
 	for(int i = 1;i < jMax;i++){
-  		tempNode = (struct Node*)malloc(sizeof(struct Node));
+  		tempNode = (struct Nodo*)malloc(sizeof(struct Nodo));
   		lastNode->next_node = tempNode;
   		lastNode = tempNode;
 	}
-	/* END LIST */
 	((struct createListArgs*)arg)->ret = head;
-	//return (void*)head;
 	return NULL;
 }
 
 void* fillPowerSetPTHREAD(void *arg){
-	struct NodeDub* head = ((struct fillPowerSetArgs*)arg)->head;
+	struct DubNodo* head = ((struct fillPowerSetArgs*)arg)->head;
 	int index_start = ((struct fillPowerSetArgs*)arg)->index_start;
 	int index_end = ((struct fillPowerSetArgs*)arg)->index_end;
 	int n = ((struct fillPowerSetArgs*)arg)->n;
 	int jMax = ((struct fillPowerSetArgs*)arg)->jMax; 
-	//printf("%d %d\n",index_start,index_end );
-
-	struct NodeDub* head_temp = NULL;
-	struct Node** pointers = NULL;
-	struct Node* pointer_temp = NULL;
-	pointers = malloc(n * sizeof(struct Node*));
-	//pointers[0] = NULL;
-	//printListDub(pointers);
-	//printList(pointers[0]);
-	//printList(pointers[1]);
-	//printList(pointers[2]);
-	//printList(pointers[3]);
+	struct DubNodo* head_temp = NULL;
+	struct Nodo** pointers = NULL;
+	struct Nodo* pointer_temp = NULL;
+	pointers = malloc(n * sizeof(struct Nodo*));
 
 	head_temp = head;
 	for(int i = 0;i < n;i++){
 		pointers[i] = head_temp->next_node;
-		//printf("%d", head_temp->data);
 		head_temp = head_temp->next_node_dub;
 	}
-	//printf("\n");
-
-	//head_temp = head;
-	//printListDub(head_temp);
 	char* string_temp = malloc(n * sizeof(char));
 	for(int i = index_start-1;i<index_end-1 && i < jMax-1;i++){
 		strcpy(string_temp,decimal_to_binary(i+1,n));
 		for(int j = 0;j < n;j++){
-			//printf("%d", string_temp[j]-'0');
 			pointers[j]->data = string_temp[j]-'0';
-			//printf("%d", pointers[j]->data);
 			pointers[j] = pointers[j]->next_node;
 
 		}
-		//printf(" %s %d\n", "", i+1);
 	}
 	return NULL;
 }
@@ -307,19 +267,15 @@ void* fillPowerSetPTHREAD(void *arg){
 
 int main(int argc, char const *argv[]){
 	if(argc == 4 && (!strcmp(argv[1],"-v") || !strcmp(argv[1],"-s"))){
-		//argv[1]: MODE [-v|-s]
-		//argv[2]: NUMBERS [n]
 		int n = atoi(argv[2]);
 		int l = atoi(argv[3]);
 		int jMax = powpow(2,n);
 		int temp;
 		
-		//Extra vars		
 		int value,k,change;
 		int thread_elements,thread_elements_mod;
 		thread_elements_mod = 0;
 
-		//Defining elemets per thread
 		if(jMax%l==0){
 			thread_elements = jMax/l;
 		}
@@ -328,35 +284,30 @@ int main(int argc, char const *argv[]){
 			thread_elements_mod = jMax- thread_elements*(l-1);
 		}
 
-		//Threads
 		pthread_t *threads;
 		threads = malloc(l * sizeof(pthread_t));
 
-		//Time calculus vars
-		time_t  t0, t1; /* time_t is defined on <time.h> and <sys/types.h> as long */
-	  	clock_t c0, c1; /* clock_t is defined on <time.h> and <sys/types.h> as int */
+		time_t  t0, t1; 
+	  	clock_t c0, c1; 
 
 
-		//START TIME
 		t0 = time(NULL);
 	  	c0 = clock();
 
-		//Linked lists vars
-
-		struct NodeDub** heads;// = createList(n,jMax);
-		heads = malloc(thread_elements * sizeof(struct NodeDub*));
+		struct DubNodo** heads;
+		heads = malloc(thread_elements * sizeof(struct DubNodo*));
 
 		struct createListArgs* create_list_args;
 		create_list_args = malloc(l * sizeof(struct createListArgs));
 		for(int i = 0;i < l;i++){
 			if(i == l-1 && thread_elements_mod != 0){
-				//heads[i] = createList(n,thread_elements_mod);	
+		
 				create_list_args[i].n = n;
 				create_list_args[i].jMax = thread_elements_mod;
 				pthread_create(&threads[i],NULL,createListPTHREAD,&create_list_args[i]);
 			}
 			else if (thread_elements != 0){
-				//heads[i] = createList(n,thread_elements);
+				
 				create_list_args[i].n = n;
 				create_list_args[i].jMax = thread_elements;
 				pthread_create(&threads[i],NULL,createListPTHREAD,&create_list_args[i]);
@@ -384,19 +335,15 @@ int main(int argc, char const *argv[]){
 		}
 		for(int i = 0;i < l;i++){
 			if(strcmp(argv[1],"-v")==0){
-				printPowerSet(heads[i],i+1,n,1);
+				imprimirPowerSet(heads[i],i+1,n,1);
 			}
 			else if(strcmp(argv[1],"-s")==0){
-				printPowerSet(heads[i],i+1,n,0);
+				imprimirPowerSet(heads[i],i+1,n,0);
 			}
 		}
 
-		//END TIME
 		t1 = time(NULL);
 	  	c1 = clock();
-
-	  	/* TIME PRINT */
-		printf ("Elapsed wall clock time: %ld Elapsed CPU time: %f Problem size: %d Threads: %d\n", (long) (t1 - t0),(float) (c1 - c0)/CLOCKS_PER_SEC,n,l);
 	  	free(heads);
   	}
   	return 0;
