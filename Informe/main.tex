@@ -1,0 +1,200 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Topico     : Estilo de Informes - DMCC  
+% Autor      : Ruben Carvajal Schiaffino
+% Santiago de Chile, 13/9/2016
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+%
+\documentclass{report}
+%
+%
+%
+\usepackage{epsfig}
+%
+\usepackage[utf8]{inputenc}
+%
+\usepackage{pdfpages}
+%
+\renewcommand*\thesection{\arabic{section}}
+\newcommand \tab{\hspace*{25 pt}}
+\newcommand \minitab{\hspace*{15 pt}}
+%
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\psfig{figure=Usach.png,height=3cm,,}
+\end{center}
+\begin{center}
+{\bf Departamento de Matem\'atica y Ciencia de la Computaci\'on}
+\end{center}
+\vspace{3cm}
+\begin{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MODIFICAR. Despues del tag \bf se coloca el titulo del trabajo
+%
+{\Large \bf Pep 1 \\
+~~ \\
+Algoritmos Distribuidos}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\end{center}
+\begin{center}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MODIFICAR. Despues del tag \bf se coloca el semestre y año
+%
+{\large \bf Segundo Semestre 2016}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\end{center}
+\vspace{5cm}
+\begin{tabular}{c l c}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MODIFICAR. En el primer campo colocar el nombre de la asignatura y su codigo
+%            En el segundo campo colocar el nombre del autor
+%
+Algoritmos Distribuidos 26106 & ~~~~~~~~~~~~~~~~~ & Fernando Garcia Polgati \\
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% MODIFICAR. En el primer campo colocar el nombre de la carrera
+%            En el segundo campo color direccion electronica
+%
+Licenciatura en Ciencia de la Computaci\'on & ~~ & fernando.gp101@gmail.com
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\end{tabular}
+\end{titlepage}
+%
+
+%
+\section{Plataforma Computacional}
+Los programa fueron ejecutados en un computador con las siguientes caracter\'isticas:
+\begin{itemize}
+\item {\bf Procesador:} Intel(R) Core(TM) i5-7300HQ CPU 2.50GHz
+\item {\bf Memoria RAM:} 7994312 kB
+\item {\bf Sistema Operativo:} Linux - Ubuntu 18.04
+\end{itemize}
+%
+
+\section{Pregunta 1}
+\subsection{Descripci\'on del problema}
+Para el problema 1 se busca estudiar el comportamiento que determina la existencia de estrellas a partir de una matriz
+por filas, construya una implementación que la recorra por columnas y haga una comparación de las versiones secuencial y paralelas.\\
+Para esto se considerara el numero de hebras entre 2 a 6.
+
+%
+\subsection{Procedimiento}
+
+Para el caso del algoritmo secuencial se tomará solamente el tiempo de la función en que se procesa las funciones principales del procedimiento, sin contar la declaración de variables ni la impresión de estas. \\
+Para el algoritmo en paralelo se toma el tiempo que demora partiendo de su función principal hasta que las hebras entren a la función pthread\_join 
+
+%
+\subsection{Estructuras de Datos Utilizadas}
+La estructura de datos utilizada en este algoritmo es:\\
+
+struct Message \{\\
+   \minitab int myid, rvalue, cvalue, size, opmode;\\
+\}
+
+
+
+\subsection{An\'alisis de Complejidad}
+El algoritmo propuesto tiene costo O($n^2$).
+%
+
+\subsection{Implementaci\'on}
+El algoritmo est\'a implementado en lenguaje C
+
+\newpage
+
+\subsection{Resultados Experimentales}
+
+\textbf{Grafico 1:}\\
+\psfig{figure=StarsSecuencial.png,height=10cm,,}\\
+\\Se puede apreciar claramente en el grafico que el algoritmo que ejecuta las matrices columna x fila tiene mucho más tiempo de ejecución para resolver el problema que el algoritmo que ejecuta las matrices fila x columna.
+\newpage
+
+\textbf{Grafico 2:}\\
+\psfig{figure=StarsParaleloFilas.png,height=7cm,,}\\
+Teniendo el algoritmo de estrellas por paralelo usando filas x columna tenemos resultados muy similares al usar distintas hebras para resolver el problema\\
+
+\textbf{Grafico 3:}\\
+\psfig{figure=StarsParaleloColumna.png,height=7cm,,}
+\\Para el caso del algoritmo de estrellas por paralelo usando columna x filas podemos ver resultados similares hasta llegar al tamaño de matriz de 16.000, es en este momento donde el tiempo de ejecución de las distintas hebras empieza a variar.
+
+De las tres graficas se observa claramente que la ejecución de Columna x fila es mucho m\'as lenta.
+
+\subsection{Conclusiones}
+Al tener un algoritmo hay varias formas que se puede manipular para verificar si la ejecuci\'on mejora o empeora.
+El uso de las hebras nos ayuda para optimizar el uso del cpu y para lograr algunas mejoras dependiendo del caso en las cuales se usan.
+
+%
+\section{Pregunta 2}
+\subsection{Introducci\'on}
+Para esta pregunta se busca analizar el desempeño que calcula las raices cuadradas de numeros entre 1 y n 
+
+%
+\subsection{Procedimiento}
+Para el algoritmo en paralelo se toma el tiempo que demora partiendo de su función principal hasta que las hebras entren a la función pthread_join 
+
+
+%
+\subsection{Estructuras de Datos Utilizadas}
+struct Message \{\\
+   \minitab int myid, nvalue, numthreads;
+   float *data;\\
+\};   
+
+
+\subsection{An\'alisis de Complejidad}
+El algoritmo propuesto tiene costo O(n)
+%
+\subsection{Implementaci\'on}
+El algoritmo est\'a implementado en lenguaje C
+\newpage
+
+\subsection{Resultados Experimentales}
+\textbf{Gráfico 1} \\
+\psfig{figure=ParsCuadrados.png,height=7cm,,}
+\\En el grafico del algoritmo de raices cuadradas sin variable global podemos ver como va aumentando el tiempo de ejecución al momento de usar más hebras \\
+
+
+\textbf{Gráfico2}\\
+\psfig{figure=ParsCuadradosGlobales.png,height=7cm,,}\\
+En el grafico del algoritmo de raices cuadradas con variable global aumenta un poco el tiempo de ejecución cuando se utilizan más hebras
+
+\\\\
+Se puede apreciar que el algoritmo que se ejecuta usando una variable global es más rapido en procesar la información.
+
+\subsection{Conclusiones}
+Podemos ver que para este caso las variables globales van a ser mejores para el momento de ejecutar el algoritmo y que el aumento de threads nos va a hacer aumentar el tiempo de ejecución total.
+
+
+%
+\section{Pregunta 3}
+\subsection{Introducci\'on}
+Se busca construir un programa paralelo que reciba como entrada un conjunto de n elementos almacenados en una lista y genera su conjunto potencia.
+%
+
+\subsection{Estructuras de Datos Utilizadas}
+Struct Nodo\{\\
+    \minitab unsigned int info;\\
+    \minitab struct node *next\\
+\}
+
+
+\subsection{Implementaci\'on}
+El algoritmo est\'a implementado en lenguaje C.
+
+
+\end{document}
